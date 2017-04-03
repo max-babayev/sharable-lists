@@ -3,7 +3,7 @@ import {StyleSheet, css} from 'aphrodite';
 
 import Navigation from '../navigation/Navigation';
 
-export default class MultiLists extends React.Component {
+export default class AddItemModal extends React.Component {
 
     render() {
         const {onAddClick, onCancelClick} = this.props;

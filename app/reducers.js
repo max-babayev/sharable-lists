@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 
-import multiLists from './multiListsView/multiListsReducer';
+import app from './reducers/categories';
 
-console.log(multiLists);
+//dont need this yet but will in the future
 const combinedReducers = combineReducers({
-    allLists: multiLists
+    app
 });
 
 export default combinedReducers;

@@ -4,7 +4,7 @@ import {StyleSheet, css} from 'aphrodite';
 import Navigation from '../navigation/Navigation';
 import AddItemModal from '../addItemModal/AddItemModal';
 import ConfirmModal from '../confirmModal/ConfirmModal';
-import Item from './Item';
+import CategoryItem from './CategoryItem';
 
 export default class CategoryList extends React.Component {
 
@@ -25,14 +25,16 @@ export default class CategoryList extends React.Component {
             <div className ={css(styles.listContainer)}>
                 <Navigation onAddClick={onStartAddCategory}/>
                 <ul className={css(styles.list)}>{categories.map((cat, index) => {
-                        return <div key={index}><Item
+                        return <div key={index}><CategoryItem
                             onSideDrag={() => onStartDeleteCategory(index)}
                             listItem={cat}/></div>;
                     })}</ul>
                 {addingCategory
                     ? <AddItemModal onAddClick={onAddCategory} onCancelClick={onCancelAddCategory}/>
                     : null}
-                
+                {deletingCategory !== false
+                    ? <ConfirmModal onConfirmClick={onDeleteCategory} onCancelClick={onCancelDeleteCategory}/>
+                    : null}
                 <div
                     className={css(styles.emptyMessage, categories.length === 0 && styles.emptyMessageVisible)}>
                     Oops, looks like there are no lists here. Click the + button above to add a list

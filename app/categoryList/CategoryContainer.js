@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import React from 'react';
-import ItemList from './ItemList';
-//import * as actionCreators from './CategoryActionCreators';
+import CategoryList from './CategoryList';
+import * as actionCreators from './CategoryActionCreators';
 
 const mapStateToProps = (state) => {
   const {categories, addingCategory, deletingCategory} = state.app;
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
- /*   onStartAddCategory: () => {
+    onStartAddCategory: () => {
       dispatch(actionCreators.startAddCategory());
     },
     onAddCategory: (name) => {
@@ -27,10 +27,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     onDeleteCategory: (index) => {
       dispatch(actionCreators.deleteCategory(index));
-    }*/
+    }
   };
 };
 
-const ItemListContainer = connect(mapStateToProps, mapDispatchToProps)(ItemList);
+const CategoryListContainer = connect(mapStateToProps, mapDispatchToProps)(CategoryList);
 
-export default ItemListContainer;
+export default CategoryListContainer;

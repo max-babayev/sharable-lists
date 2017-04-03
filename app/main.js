@@ -1,14 +1,16 @@
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import {Router, Route, IndexRoute, hashHistory, browserHistory} from 'react-router';
+import {BrowserRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import MultiListsContainer from './multiListsView/MultiListsContainer';
+import CategoryListContainer from './categoryList/CategoryContainer';
+import ItemListContainer from './itemList/ItemListContainer';
 
 import configureStore from './store';
 
-//preloaded state needs to restore user session from localstorage/server in the future
+// preloaded state needs to restore user session from localstorage/server in the
+// future
 const store = configureStore();
 
 class App extends React.Component {
@@ -19,7 +21,10 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <Route path='/' component={MultiListsContainer}/>
+                <div>
+                    <Route path='/' component={CategoryListContainer}/>
+                    <Route path='/categories/:id' component={ItemListContainer}/>
+                </div>
             </BrowserRouter>
         );
     }

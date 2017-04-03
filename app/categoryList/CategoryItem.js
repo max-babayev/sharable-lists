@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {StyleSheet, css} from 'aphrodite';
 import interact from "interactjs";
-import {DragSource} from 'react-dnd';
+import {Link} from 'react-router-dom';
 
-export default class MultiLists extends React.Component {
+export default class CategoryItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,10 +29,9 @@ export default class MultiLists extends React.Component {
     }
 
     dragEndListener(event) {
-        console.log(this.state.x, this.state.endTrigger);
         if (Math.abs(this.state.x) >= this.state.endTrigger) {
             this.deleteItem();
-        } else {}
+        }
         this.revertDrag();
     }
 
@@ -91,7 +90,7 @@ export default class MultiLists extends React.Component {
                 ref="listItem"
                 className={css("listItem", styles.listItem, this.setTransform().transform)}>
                 <a className={css(styles.item)}><img src="/app/assets/images/moveArrow.svg"/></a>
-                <span className={css(styles.item)}>{listItem.name}</span>
+                <Link to={"/categories/"+listItem.name} className={css(styles.item)}>{listItem.name}</Link>
                 <a
                     className={css(styles.item, styles.share)}
                     onClick=
