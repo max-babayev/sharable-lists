@@ -22,7 +22,8 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Route path='/' component={CategoryListContainer}/>
+                    <Route exact path='/' component={CategoryListContainer}/>
+                    <Route path='/settings' component={ItemListContainer}/>
                     <Route path='/categories/:id' component={ItemListContainer}/>
                 </div>
             </BrowserRouter>

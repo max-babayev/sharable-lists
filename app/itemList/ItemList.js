@@ -5,39 +5,36 @@ import Navigation from '../navigation/Navigation';
 import AddItemModal from '../addItemModal/AddItemModal';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import Item from './Item';
-
-export default class CategoryList extends React.Component {
+console.log(Item);
+export default class ItemList extends React.Component {
 
     render() {
         const {
-            categories = [],
-            addingCategory,
-            deletingCategory,
-            onStartAddCategory,
-            onStartDeleteCategory,
-            onCancelDeleteCategory,
-            onDeleteCategory,
-            onAddCategory,
-            onCancelAddCategory
+            items,
+            addingItem,
+            onStartAddItem,
+            onAddItem,
+            onCancelAddItem,
+            activeCategory
         } = this.props;
-        console.log(deletingCategory);
+
         return (
             <div className ={css(styles.listContainer)}>
-                <Navigation onAddClick={onStartAddCategory}/>
-                <ul className={css(styles.list)}>{categories.map((cat, index) => {
-                        return <div key={index}><Item
-                            onSideDrag={() => onStartDeleteCategory(index)}
-                            listItem={cat}/></div>;
+                <Navigation onAddClick={onStartAddItem}/>
+                <ul className={css(styles.list)}>{items.map((item, index) => {
+                        return <div key={index}><Item listItem={item}/></div>;
                     })}</ul>
-                {addingCategory
-                    ? <AddItemModal onAddClick={onAddCategory} onCancelClick={onCancelAddCategory}/>
-                    : null}
-                
                 <div
-                    className={css(styles.emptyMessage, categories.length === 0 && styles.emptyMessageVisible)}>
-                    Oops, looks like there are no lists here. Click the + button above to add a list
-                    and get started!
+                    className={css(styles.emptyMessage, items.length === 0 && styles.emptyMessageVisible)}>
+                    Oops, looks like there are no items here. Click the + button above to add an
+                    item and get started!
                 </div>
+
+                {addingItem
+                    ? <AddItemModal
+                            onAddClick={(name) => onAddItem(name, activeCategory)}
+                            onCancelClick={onCancelAddItem}/>
+                    : null}
 
             </div>
         );

@@ -7,34 +7,32 @@ export default class Item extends React.Component {
         super(props);
     }
 
- 
     render() {
-        const {index, listItem, onSideDrag, sideDragRevertFlag} = this.props;
+        const {index, listItem} = this.props;
 
         return (
-            <li
-                ref="listItem"
-                className={css("listItem", styles.listItem)}>
-                <a className={css(styles.item)}><img src="/app/assets/images/moveArrow.svg"/></a>
+            <li ref="listItem" className={css("listItem", styles.listItem)}>
+                <input className={css(styles.checkbox)} type="checkbox"></input>
                 <span className={css(styles.item)}>{listItem.name}</span>
-                <a
-                    className={css(styles.item, styles.share)}
-                    onClick=
-                    {() => onShareClick(index)}>Share</a>
+
             </li>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    checkbox: {
+        width: "50px",
+        height: "100%"
+    },
     listItem: {
-        fontSize: "36px",
+        fontSize: "20px",
         display: "flex",
         justifyContent: "space-between",
         backgroundColor: "white",
         listStyle: "none",
         width: "90vw",
-        height: "100px",
+        height: "30px",
         willChange: "transform",
         marginBottom: "20px"
     },

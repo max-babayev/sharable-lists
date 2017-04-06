@@ -83,14 +83,19 @@ export default class CategoryItem extends React.Component {
     }
 
     render() {
-        const {index, listItem, onSideDrag, sideDragRevertFlag} = this.props;
+        const {index, listItem, onSideDrag, sideDragRevertFlag, onLinkClick} = this.props;
 
         return (
             <li
                 ref="listItem"
                 className={css("listItem", styles.listItem, this.setTransform().transform)}>
                 <a className={css(styles.item)}><img src="/app/assets/images/moveArrow.svg"/></a>
-                <Link to={"/categories/"+listItem.name} className={css(styles.item)}>{listItem.name}</Link>
+                <Link
+                    onClick={() => {
+                    onLinkClick(index);
+                }}
+                    to={"/categories/" + listItem.name}
+                    className={css(styles.item)}>{listItem.name}</Link>
                 <a
                     className={css(styles.item, styles.share)}
                     onClick=

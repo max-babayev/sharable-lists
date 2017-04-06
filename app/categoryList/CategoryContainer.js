@@ -4,7 +4,7 @@ import CategoryList from './CategoryList';
 import * as actionCreators from './CategoryActionCreators';
 
 const mapStateToProps = (state) => {
-  const {categories, addingCategory, deletingCategory} = state.app;
+  const {categories, addingCategory, deletingCategory} = state;
   return {categories, addingCategory, deletingCategory};
 };
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     onAddCategory: (name) => {
       dispatch(actionCreators.addCategory(name));
     },
-    oncancelDeleteCategory: (name) => {
+    oncancelAddCategory: (name) => {
       dispatch(actionCreators.cancelAddCategory());
     },
     onStartDeleteCategory: (index) => {
@@ -27,6 +27,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     onDeleteCategory: (index) => {
       dispatch(actionCreators.deleteCategory(index));
+    },
+    onSetActiveCategory: (index) => {
+      console.log(index);
+      dispatch(actionCreators.setActiveCategory(index));
     }
   };
 };

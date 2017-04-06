@@ -18,22 +18,27 @@ export default class CategoryList extends React.Component {
             onCancelDeleteCategory,
             onDeleteCategory,
             onAddCategory,
-            onCancelAddCategory
+            onCancelAddCategory,
+            onSetActiveCategory
         } = this.props;
-        console.log(deletingCategory);
+
         return (
             <div className ={css(styles.listContainer)}>
                 <Navigation onAddClick={onStartAddCategory}/>
                 <ul className={css(styles.list)}>{categories.map((cat, index) => {
                         return <div key={index}><CategoryItem
                             onSideDrag={() => onStartDeleteCategory(index)}
+                            onLinkClick=
+                            { () =>{onSetActiveCategory(index);}}
                             listItem={cat}/></div>;
                     })}</ul>
                 {addingCategory
                     ? <AddItemModal onAddClick={onAddCategory} onCancelClick={onCancelAddCategory}/>
                     : null}
                 {deletingCategory !== false
-                    ? <ConfirmModal onConfirmClick={onDeleteCategory} onCancelClick={onCancelDeleteCategory}/>
+                    ? <ConfirmModal
+                            onConfirmClick={onDeleteCategory}
+                            onCancelClick={onCancelDeleteCategory}/>
                     : null}
                 <div
                     className={css(styles.emptyMessage, categories.length === 0 && styles.emptyMessageVisible)}>

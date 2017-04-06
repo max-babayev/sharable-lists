@@ -23,3 +23,7 @@ export const deleteCategory = (index) => {
 export const cancelDeleteCategory = () => {
     return {type: actions.CANCEL_DELETE_CATEGORY};
 };
+
+export const setActiveCategory = (index) => {
+    return {type: actions.SET_ACTIVE_CATEGORY, index};
+};

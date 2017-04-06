@@ -1,7 +1,9 @@
-export const addItem = (name) => {
-    return {type: "ADD_ITEM", name};
+import itemActions from '../itemList/ItemActions';
+
+export const addItem = (name, categoryIndex) => {
+    return {type: itemActions.ADD_ITEM, name, categoryIndex};
 };
 
 export const startAddItem = () => {
-    return {type: "START_ADD_ITEM"};
+    return {type: itemActions.START_ADD_ITEM};
 };

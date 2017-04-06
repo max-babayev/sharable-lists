@@ -1,33 +1,23 @@
 import {connect} from 'react-redux';
 import React from 'react';
 import ItemList from './ItemList';
-//import * as actionCreators from './CategoryActionCreators';
+import * as actionCreators from './ItemActionCreators';
 
 const mapStateToProps = (state) => {
-  const {categories, addingCategory, deletingCategory} = state.app;
-  return {categories, addingCategory, deletingCategory};
+
+  const {categories, activeCategory, addingItem} = state;
+  console.log(addingItem);
+  return {items: categories[activeCategory].items, addingItem, activeCategory};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
- /*   onStartAddCategory: () => {
-      dispatch(actionCreators.startAddCategory());
+    onStartAddItem: () => {
+      dispatch(actionCreators.startAddItem());
     },
-    onAddCategory: (name) => {
-      dispatch(actionCreators.addCategory(name));
-    },
-    oncancelDeleteCategory: (name) => {
-      dispatch(actionCreators.cancelAddCategory());
-    },
-    onStartDeleteCategory: (index) => {
-      dispatch(actionCreators.startDeleteCategory(index));
-    },
-    onCancelDeleteCategory: () => {
-      dispatch(actionCreators.cancelDeleteCategory());
-    },
-    onDeleteCategory: (index) => {
-      dispatch(actionCreators.deleteCategory(index));
-    }*/
+    onAddItem: (name, catIndex) => {
+      dispatch(actionCreators.addItem(name, catIndex));
+    }
   };
 };
 

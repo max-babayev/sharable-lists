@@ -12,7 +12,6 @@ export default class AddItemModal extends React.Component {
             <div>
                 <div className={css(styles.popupOverlay)}></div>
                 <div className={css(styles.popup)}>
-                    <h2>Add a list category here:</h2>
                     <input
                         className={css(styles.popupInput)}
                         type="text"
@@ -20,8 +19,10 @@ export default class AddItemModal extends React.Component {
                         this.input = node;
                     }}></input>
                     <div className={css(styles.buttonContainer)}>
-                    <button className={css(styles.button)} onClick={() => onAddClick(this.input.value)}>Add</button>
-                    <button className={css(styles.button)} onClick={() => onCancelClick()}>Cancel</button>
+                        <button
+                            className={css(styles.button)}
+                            onClick={() => onAddClick(this.input.value)}>Add</button>
+                        <button className={css(styles.button)} onClick={() => onCancelClick()}>Cancel</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: "30vh",
         left: "10vw",
-        "z-index" : "101"
+        "z-index": "101"
     },
     popupInput: {
         display: "flex",
@@ -54,11 +55,11 @@ const styles = StyleSheet.create({
         margin: "auto"
     },
     buttonContainer: {
-        display:"flex",
-        "justify-content" : "flex-end"
+        display: "flex",
+        "justify-content": "flex-end"
     },
     button: {
-        "margin" :"5px"
-        
+        "margin": "5px"
+
     }
 });

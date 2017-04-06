@@ -1,63 +1,35 @@
 import categoryActions from '../categoryList/CategoryActions';
+import itemActions from '../itemList/ItemActions';
+import items from "./items";
 
-const emptyState = {
-    addingCategory: false,
-    deletingCategory: false,
-    categories: []
-};
-function app(state = emptyState, action) {
+function categories(state = [], action) {
     switch (action.type) {
         case categoryActions.ADD_CATEGORY:
-            return {
-                ...state,
-                categories: [
-                    {
-                        name: action.name,
-                        items: []
-                    },
-                    ...state.categories
-                ],
-                addingCategory: false
-            };
-        case categoryActions.START_ADD_CATEGORY:
-            return {
-                ...state,
-                addingCategory: true
-            };
-        case categoryActions.CANCEL_ADD_CATEGORY:
-            return {
-                ...state,
-                addingCategory: false
-            };
-        case categoryActions.START_DELETE_CATEGORY:
-            {
-                return {
-                    ...state,
-                    deletingCategory: action.index
-                };
-            }
+            return [
+                {
+                    name: action.name,
+                    items: []
+                },
+                ...state
+            ];
+
         case categoryActions.DELETE_CATEGORY:
-            return {
-                ...state,
-                categories: [
-                    ...state
-                        .categories
-                        .slice(0, state.deletingCategory),
-                    ...state
-                        .categories
-                        .slice(state.deletingCategory + 1)
-                ],
-                deletingCategory: false
-            };
-        case categoryActions.CANCEL_DELETE_CATEGORY:
-            return {
-                ...state,
-                deletingCategory: false
-            };
-        
+            return [
+                ...state.slice(0, action.index),
+                ...state.slice(action.index + 1)
+            ];
+        case itemActions.ADD_ITEM:
+            return [
+                ...state.slice(0, action.categoryIndex - 1), {
+                    ...state[action.categoryIndex],
+                    items: items(state[action.categoryIndex].items, action)
+                },
+                ...state.slice(action.categoryIndex + 1)
+            ];
+
         default:
             return state;
     }
 }
 
-export default app;
+export default categories;
