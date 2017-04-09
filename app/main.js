@@ -9,6 +9,9 @@ import ItemListContainer from './itemList/ItemListContainer';
 
 import configureStore from './store';
 
+import io from 'socket.io-client';
+let socket = io(`http://localhost:3000`);
+
 // preloaded state needs to restore user session from localstorage/server in the
 // future
 const store = configureStore();

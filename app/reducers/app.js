@@ -8,7 +8,6 @@ const emptyState = {
     deletingCategory: false
 };
 function app(state = emptyState, action) {
-    console.log(action);
     switch (action.type) {
         case categoryActions.ADD_CATEGORY:
         case itemActions.ADD_ITEM:

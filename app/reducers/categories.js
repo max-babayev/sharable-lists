@@ -8,7 +8,8 @@ function categories(state = [], action) {
             return [
                 {
                     name: action.name,
-                    items: []
+                    items: [],
+                    shared: []
                 },
                 ...state
             ];
